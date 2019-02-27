@@ -146,34 +146,6 @@ Here's what we got with random hard negatives for each positive pair.
 
 ![](images/mnist_otl_test.png)
 
-# FashionMNIST
-
-Similar experiments were conducted for [FashionMNIST](https://github.com/zalandoresearch/fashion-mnist) dataset where advantages of online negative mining are slightly more visible. The exact same network architecture with only 2-dimensional embeddings was used, which is probably not complex enough for learning good embeddings.
-More complex datasets with higher number classses should benefit even more from online mining.
-
-## Baseline - classification
-
-![](images/fmnist_softmax_test.png)
-
-## Siamese vs online contrastive loss with negative mining
-
-Siamese network with randomly selected pairs
-
-![](images/fmnist_comp_cl.png)
-
-Online contrastive loss with negative mining
-
-![](images/fmnist_comp_ocl.png)
-
-## Triplet vs online triplet loss with negative mining
-
-Triplet network with random triplets
-
-![](images/fmnist_comp_tl.png)
-
-Online triplet loss with negative mining
-
-![](images/fmnist_comp_otl.png)
 
 # TODO
 
