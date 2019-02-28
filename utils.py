@@ -1,3 +1,8 @@
+"""
+Experiment to see if we can create a loc2vec as detailed in the blogpost.
+bloglink: https://www.sentiance.com/2018/05/03/venue-mapping/
+"""
+
 from itertools import combinations
 
 import numpy as np
@@ -20,34 +25,6 @@ class TripletSelector:
 
     def get_triplets(self, embeddings, labels):
         raise NotImplementedError
-
-
-class AllTripletSelector(TripletSelector):
-    """
-    Returns all possible triplets
-    May be impractical in most cases
-    """
-
-    def __init__(self):
-        super(AllTripletSelector, self).__init__()
-
-    def get_triplets(self, embeddings, labels):
-        labels = labels.cpu().data.numpy()
-        triplets = []
-        for label in set(labels):
-            label_mask = (labels == label)
-            label_indices = np.where(label_mask)[0]
-            if len(label_indices) < 2:
-                continue
-            negative_indices = np.where(np.logical_not(label_mask))[0]
-            anchor_positives = list(combinations(label_indices, 2))  # All anchor-positive pairs
-
-            # Add all negatives for all positive pairs
-            temp_triplets = [[anchor_positive[0], anchor_positive[1], neg_ind] for anchor_positive in anchor_positives
-                             for neg_ind in negative_indices]
-            triplets += temp_triplets
-
-        return torch.LongTensor(np.array(triplets))
 
 
 def hardest_negative(loss_values):
