@@ -4,7 +4,7 @@ This project is inspired by this excellent blogpost: https://www.sentiance.com/2
 
 ### Read my blog post for implementation details and choices made < <insert URL> >
 
-    Note: This implementation requires FP16 support. If your GPU does not have that, just disable it with `amp.init(enable=False)` in trainer.py. You might also have to change the batch size in config.py.
+#### Note: This implementation requires FP16 support. If your GPU does not have that, just disable it with `amp.init(enable=False)` in trainer.py. You might also have to change the batch size in config.py.
 
 ## How to generate tiles from openstreetmap data
 
