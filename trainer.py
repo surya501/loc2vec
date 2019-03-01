@@ -8,6 +8,7 @@ from config import IMG_SIZE, CHECKPOINT_FILE_PREFIX
 
 # For Mixed precision training
 from apex import amp
+# set this to False if your system does not support FP16
 amp_handle = amp.init(enabled=True)
 
 def fit(train_loader, val_loader, model, loss_fn, optimizer, scheduler, n_epochs, cuda, log_interval,
