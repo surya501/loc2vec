@@ -117,3 +117,9 @@ dmypy.json
 
 # VSCODE
 .vscode/
+
+# tensorboard
+tensorboard/
+
+#annoy files
+*.ann

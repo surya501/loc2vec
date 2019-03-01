@@ -17,7 +17,7 @@ LOG_INTERVAL = 125
 TILE_FILE = "./../tile/14"
 
 # Prefix of the checkpoint file
-CHECKPOINT_FILE_PREFIX = "checkpt2_resnet50"
+CHECKPOINT_FILE_PREFIX = "checkpoint_"
 
 # Margin
 MARGIN = 1
