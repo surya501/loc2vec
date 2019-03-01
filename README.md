@@ -2,13 +2,13 @@
 
 This project is inspired by this excellent blogpost: https://www.sentiance.com/2018/05/03/venue-mapping/
 
-### Read my blog post for implementation details and choices made < <insert URL> >
+### Read my [blog post](https://medium.com/@sureshr/loc2vec-a-fast-pytorch-implementation-2b298072e1a7) for implementation details and choices made
 
 #### Note: This implementation requires FP16 support. If your GPU does not have that, just disable it with `amp.init(enable=False)` in trainer.py. You might also have to change the batch size in config.py.
 
 ## How to generate tiles from openstreetmap data
 
-Elaborate instructions are provided in the ![Readme file](openstreetmap-tile-server/README.md).
+Elaborate instructions are provided in the [Readme file](openstreetmap-tile-server/README.md).
 
 Alternatively, you can blindly use load.sh file after changing the path to the pbf file to create the file server. lat2tile.py has a quick utility function to generate all the tiles for the US-west region. You can generate a list of urls using the following. Once you have the following and download the tiles.
 
