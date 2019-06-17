@@ -12,6 +12,9 @@ from torch.utils.data.sampler import WeightedRandomSampler
 from torch.utils.data import DataLoader
 from torchvision import transforms
 
+# For Mixed precision training
+from apex import amp
+
 # Set up the network and training parameters
 from trainer import fit
 # Strategies for selecting triplets within a minibatch
@@ -60,9 +63,7 @@ def main():
     model = Loc2Vec()
     if cuda:
         model.cuda()
-    # if torch.cuda.device_count() > 1:
-    #     print("Let's use", torch.cuda.device_count(), "GPUs!")
-    #     model = nn.DataParallel(model)
+
     loss_fn = OnlineTripletLoss(MARGIN,
                                 HardestNegativeTripletSelector(MARGIN),
                                 SemihardNegativeTripletSelector(MARGIN),
@@ -70,6 +71,13 @@ def main():
 
     optimizer = optim.Adam(model.parameters(), lr=1e-3)
     scheduler = lr_scheduler.StepLR(optimizer, 16, gamma=0.1, last_epoch=-1)
+
+    # Mixed precision training
+    model, optimizer = amp.initialize(model, optimizer, opt_level="O1")
+
+    # if torch.cuda.device_count() > 1:
+    #     print("Let's use", torch.cuda.device_count(), "GPUs!")
+    #     model = nn.DataParallel(model)
 
     fit(online_train_loader, online_train_loader, model, loss_fn, optimizer, scheduler,
         N_EPOCHS, cuda, LOG_INTERVAL)
