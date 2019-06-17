@@ -20,7 +20,15 @@ Alternatively, you can blindly use load.sh file after changing the path to the p
     docker run -p 80:80 -v openstreetmap-data:/var/lib/postgresql/10/main -d overv/openstreetmap-tile-server run
     cat urls.txt | xargs -P 10 -n 1 wget -nH -nc -x
 
+## Environment setup (for pytorch and amp) and start training
 
+    conda env create -f  environment.yml
+    conda activate loc2vec
+    git clone https://github.com/NVIDIA/apex
+    cd apex
+    pip install -v --no-cache-dir --global-option="--cpp_ext" --global-option="--cuda_ext" .
+    cd ..
+    python loc2vec
 
 
 ## Credits
@@ -33,7 +41,7 @@ First thanks! Below are a few things to implement. If you are a GIS expert, we c
 ###  TODO:
 
 - [ ] Profile and remove CPU bottleneck
-- [ ] Add a conda environment file to make it self contained
+- [x] Add a conda environment file to make it self contained
 - [ ] Add ability to suspend and resume from training
 - [ ] Ability to save checkpoint even mid-epoch based on number of hard triplets
 - [ ] Add support for Fast.ai, esp Stocastic weight averaging & One cycle learning
