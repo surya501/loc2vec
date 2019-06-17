@@ -123,3 +123,6 @@ tensorboard/
 
 #annoy files
 *.ann
+
+#model checkpoints
+model_checkpoints/
